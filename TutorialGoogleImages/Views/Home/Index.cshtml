@@ -12,7 +12,7 @@
                 el_grid.empty();
 				console.log(data);
                 for (var i = 0; i < data.length; i++) {
-					el_grid.append(`<img src="${data[i].ThumbnailLink}" />`);
+					el_grid.append(`<a href="${data[i].Link}" target="_blank"><img src="${data[i].ThumbnailLink}" /></a>`);
 				}
             });
 
