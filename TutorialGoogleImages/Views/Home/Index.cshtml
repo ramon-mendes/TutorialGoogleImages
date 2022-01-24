@@ -1,0 +1,45 @@
+﻿@section scripts {
+	<script>
+        $('form').submit(function () {
+            let query = $('input').val();
+            if (!query) {
+                alert('Informe um termo para buscar');
+				return false;
+            }
+
+            let el_grid = $('.grid');
+			$.get('/Home/AjaxQueryImages', { query: query }, function(data) {
+                el_grid.empty();
+				console.log(data);
+                for (var i = 0; i < data.length; i++) {
+					el_grid.append(`<img src="${data[i].ThumbnailLink}" />`);
+				}
+            });
+
+            return false;
+        });
+    </script>
+}
+
+<style>
+	.grid {
+		margin-top: 40px;
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+		grid-gap: 15px;
+	}
+</style>
+
+<main>
+    <div class="row">
+		<form class="col-4">
+            Buscar images:
+            <input type="text" class="form-control" />
+            <button class="btn btn-primary mt-1">Carregar</button>
+        </form>
+
+		<div class="col-12 grid">
+
+        </div>
+    </div>
+</main>
